@@ -1,2 +1,2 @@
-# HeadFirstKotlinDemo
-《Head First Kotlin》书籍对应的一些Demo与思考
+# KotlinDemo
+Kotlin的一些学习Demo与相应的思考
