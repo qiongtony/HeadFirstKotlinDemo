@@ -1,5 +1,7 @@
 package class_10_generic
 
+import class_10_generic.`in`.InContest
+
 fun main(){
     val catFuzz = Cat("Fuzz Lightyear")
     val catKatsu = Cat("Katsu")
@@ -18,6 +20,26 @@ fun main(){
     petContest.addScore(fishFinny, 60)
     val topPet = petContest.getWinners().first()
     println("Pet contest winner is ${topPet.name}")
+
+    // 猫兽医
+    val catVet = Vet<Cat>()
+    // 鱼兽医
+    val fishVet = Vet<Fish>()
+    // 宠物兽医
+    val petVet = Vet<Pets>()
+    // 猫兽医可以治疗猫，不能治疗其他宠物
+    catVet.treat(Cat("Fuzz Lightyear"))
+    /*
+     该行报错
+    catVet.treat(Fish("Finny Mcgraw")
+     */
+    petVet.treat(Cat("Katsu"))
+    petVet.treat(Fish("Finny Mcgraw"))
+
+    val catNewContest = InContest<Cat>(catVet)
+    val petNewContest = InContest<Pets>(petVet)
+    // petVet可以治疗cat，如果泛型不加in---逆变，编译会报错
+    val catInContest = InContest<Cat>(petVet)
 }
 
 class Contest <T : Pets>{
